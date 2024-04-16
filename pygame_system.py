@@ -20,24 +20,25 @@ def main():
     enn = pg.Surface((20, 20))
     pg.draw.circle(enn, (255, 0, 0), (10, 10), 10)
     enn.set_colorkey((0, 0, 0))
-
+    a = [0,0]
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
         key_lst = pg.key.get_pressed()
-        if key_lst[pg.K_UP]:
-            kk_rct.move_ip([0, -1])
         if key_lst[pg.K_DOWN]:
-            kk_rct.move_ip([0, +1])            
+            a[1] = 1
+        if key_lst[pg.K_UP]:
+            a[1] = -1           
         if key_lst[pg.K_LEFT]:
             kk_rct.move_ip([-1, 0])            
         if key_lst[pg.K_RIGHT]:
             kk_rct.move_ip([+2, 0])
         else:
-            kk_rct.move_ip([-1, 0])
+            kk_rct.move_ip([-1, 0]) 
 
+            kk_rct.move_ip(a)
         x = tmr%3200
         txt = font.render(str(tmr), True, (255, 255, 255))
         screen.fill((50, 50, 50))
